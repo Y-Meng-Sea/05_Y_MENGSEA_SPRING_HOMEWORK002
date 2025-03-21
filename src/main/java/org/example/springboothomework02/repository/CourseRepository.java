@@ -28,4 +28,30 @@ public interface CourseRepository {
     """)
     @ResultMap("courserMapper")
     Course addCourse(@Param("request") CourseRequest courseRequest);
+
+
+    @Select("""
+        SELECT * FROM courses WHERE course_id=#{id}
+    """)
+    @ResultMap("courserMapper")
+    Course getCourseById(Integer id);
+
+    @Select("""
+        DELETE  FROM  courses WHERE course_id=#{id} RETURNING*
+    """)
+    @ResultMap("courserMapper")
+    Course deleteCourse(Integer id);
+
+    @Select("""
+        UPDATE courses
+        SET course_name = #{request.courseName},
+            description = #{request.description},
+            instructor_id = #{request.instructorId}
+        WHERE course_id = #{id}
+        RETURNING *;
+    """)
+    @ResultMap("courserMapper")
+    Course updateCourse(Integer id,@Param("request") CourseRequest courseRequest);
 }
+
+

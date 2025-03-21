@@ -29,17 +29,17 @@ public class CourseServiceImpl implements CourseService {
     }
 
     @Override
-    public Course getCourseById() {
-        return null;
+    public Course getCourseById(Integer id) {
+        return courseRepository.getCourseById(id);
     }
 
     @Override
-    public Course updateCourse() {
-        return null;
+    public Course updateCourse(Integer id , CourseRequest courseRequest) {
+        return courseRepository.updateCourse(id,courseRequest);
     }
 
     @Override
-    public Course deleteCourse() {
-        return null;
+    public Course deleteCourse(Integer id) {
+        return courseRepository.deleteCourse(id);
     }
 }

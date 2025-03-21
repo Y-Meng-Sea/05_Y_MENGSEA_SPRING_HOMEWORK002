@@ -14,11 +14,11 @@ public interface CourseService {
     Course addCourse(CourseRequest courseRequest);
 
     //get courses by id
-    Course getCourseById();
+    Course getCourseById(Integer id);
 
     //update course by id
-    Course updateCourse();
+    Course updateCourse(Integer id, CourseRequest courseRequest);
 
     // delete course by id
-    Course deleteCourse();
+    Course deleteCourse(Integer id);
 }
