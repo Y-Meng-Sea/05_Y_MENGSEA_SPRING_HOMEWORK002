@@ -30,10 +30,16 @@ public interface StudentRepository {
     List<Student> getAllStudent();
 
 
-    @Insert("""
-        INSERT INTO students(student_name,email,phone_number) VALUES(#{request.studentName},#{request.email},#{request.phoneNumber});
-        INSERT INTO student_course(course_id) VALUES (#{request.coursesId})
+    @Select("""
+        INSERT INTO students(student_name,email,phone_number) VALUES(#{request.studentName},#{request.email},#{request.phoneNumber}) RETURNING * ;
     """)
+    @ResultMap("studentMapper")
     Student addStudent(@Param("request") StudentRequest studentRequest);
+
+    @Select("""
+        SELECT * FROM students WHERE  student_id=#{id}
+    """)
+    @ResultMap("studentMapper")
+    Student getStudentById(Integer id);
 
 }

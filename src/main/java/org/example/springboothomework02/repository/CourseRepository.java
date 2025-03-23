@@ -52,6 +52,13 @@ public interface CourseRepository {
     """)
     @ResultMap("courserMapper")
     Course updateCourse(Integer id,@Param("request") CourseRequest courseRequest);
+
+    //
+    @Insert("""
+    INSERT INTO student_course(student_id,courses_id) VALUES (#{studentId},#{courseId}) RETURNING * ;
+    """)
+    @ResultMap("courserMapper")
+    void addStudentAndCourse(Integer studentId, Integer courseId);
 }
 
 
